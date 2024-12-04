@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
-import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import NavBarV2 from "./components/NavBarV2";
 

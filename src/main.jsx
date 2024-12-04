@@ -1,10 +1,9 @@
 import { StrictMode } from "react";
-import { ThemeProvider } from "@mui/material";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
-import theme from "./theme";
+import theme from "./theme.js";
 
 const root = document.getElementById("root");
 
