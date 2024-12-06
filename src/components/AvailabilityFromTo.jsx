@@ -15,8 +15,8 @@ const AvailabilityFromTo = ({
   availabilityTo,
 }) => {
   const [date, setDate] = useState({
-    from: availabilityFrom,
-    to: availabilityTo,
+    from: availabilityFrom || undefined,
+    to: availabilityTo || undefined,
   });
 
   // When a user click on a date, this function will be called

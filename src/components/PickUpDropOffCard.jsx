@@ -9,6 +9,7 @@ import { ellipse, search } from "../assets/svg-icons";
 import Location from "./Location";
 import AvailabilityFromTo from "./AvailabilityFromTo";
 import { parseLocalStorageDate } from "../lib/utils";
+import { Button } from "./ui/button";
 
 const PickUpDropOffCard = () => {
   const locate = useLocation();
@@ -43,6 +44,9 @@ const PickUpDropOffCard = () => {
       );
     }
   };
+
+  const handleSearch = () => {};
+
   const isSearchPage = locate.pathname === "/search";
   const searchPageDiv = isSearchPage ? "xl:px-7" : "xl:px-6";
   const searchPageLocation = isSearchPage && "xl:max-w-[17rem] 2xl:max-w-none";
@@ -84,6 +88,29 @@ const PickUpDropOffCard = () => {
           />
         </CardContent>
       </Card>
+      <Button
+        className={`${searchPageButton} hover-effect rounded-[0.625rem] bg-blue500 xl:mt-[3.26rem]`}
+        onClick={handleSearch}
+      >
+        <img src={search} width={14} height={14} alt="Search" />
+        <span className="text-[0.875rem] font-semibold not-italic leading-[1.6625rem] text-white0 xl:text-[1rem] xl:font-medium xl:leading-[1.6rem]">
+          {isSearchPage ? "" : "Search"}
+        </span>
+      </Button>
+      {/* Search button on search Page */}
+      {isSearchPage && (
+        <Button
+          className={`${
+            isSearchPage ? "xl:hidden" : "xl:max-w-[10rem]"
+          } hover-effect flex h-12 grow flex-row gap-[0.38rem] rounded-[0.625rem] bg-blue500 xl:mt-[3.26rem] xl:h-14`}
+          onClick={handleSearch}
+        >
+          <img src={search} width={14} height={14} alt="Search" />
+          <span className="text-[0.875rem] font-semibold not-italic leading-[1.6625rem] text-white0 xl:text-[1rem] xl:font-medium xl:leading-[1.6rem]">
+            Search
+          </span>
+        </Button>
+      )}
     </motion.div>
   );
 };
