@@ -1,6 +1,7 @@
 import React from "react";
 import AdvertsDisplay from "../components/adverts/AdvertsDisplay";
 import PickUpDropOffCard from "../components/PickUpDropOffCard";
+import CarCard from "../components/carCardComponents/CarCard";
 
 function Homepage() {
   return (
@@ -10,6 +11,7 @@ function Homepage() {
         <div className="mt-7 flex w-full px-6 xl:px-[3.75rem]">
           <PickUpDropOffCard />
         </div>
+        <CarCard />
       </div>
     </main>
   );

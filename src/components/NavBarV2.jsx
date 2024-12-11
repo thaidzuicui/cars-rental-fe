@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { lightModeIcon, darkModeIcon } from "../assets/svg-icons";
 import { FaSignOutAlt } from "react-icons/fa";
+import { clearLocalStorageItems } from "../lib/utils";
 
+const user = {
+  avatar:
+    "https://i.pinimg.com/236x/af/7f/d3/af7fd34075ee8540937e7349f280c3ca.jpg",
+  full_name: "John Doe",
+  username: "johndoe",
+};
 const NavBarV2 = () => {
   const TABS = [
     { title: "Home", path: "/" },
@@ -11,13 +18,6 @@ const NavBarV2 = () => {
   ];
   const location = useLocation();
   const navigate = useNavigate();
-  const user = {
-    avatar:
-      "https://i.pinimg.com/236x/af/7f/d3/af7fd34075ee8540937e7349f280c3ca.jpg",
-    full_name: "John Doe",
-    username: "johndoe",
-  };
-  // const user = null;
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSignOut = () => {
@@ -44,12 +44,21 @@ const NavBarV2 = () => {
     <>
       <div className="fixed z-40 w-screen bg-white pl-[3.125rem] pr-[3.75rem] dark:border-b-gray850 dark:bg-gray900 border-b">
         <nav className="flex h-[6.25rem] items-center justify-between mx-auto max-w-[82.5rem]">
-          <NavLink to="/" className="font-semibold text-blue500 text-3xl">
+          <NavLink
+            to="/"
+            className="font-semibold text-blue500 text-3xl"
+            onClick={clearLocalStorageItems}
+          >
             TRANSFORM
           </NavLink>
           <div className="flex items-center">
             {TABS.map((tab) => (
-              <NavLink key={tab.path} to={tab.path} className="hover-effect">
+              <NavLink
+                key={tab.path}
+                to={tab.path}
+                className="hover-effect"
+                onClick={clearLocalStorageItems}
+              >
                 <p
                   className={`${
                     location.pathname === tab.path

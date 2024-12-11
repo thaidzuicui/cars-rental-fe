@@ -19,3 +19,28 @@ export function parseLocalStorageDate(key, defaultDate) {
 
   return defaultDate;
 }
+
+export function clearLocalStorageItems() {
+  localStorage.removeItem("availabilityFrom");
+  localStorage.removeItem("availabilityTo");
+  localStorage.removeItem("location");
+}
+
+export const USER_TOKEN = "USER_TOKEN";
+
+export const setItem = (key, value) => {
+  window.localStorage.setItem(key, value);
+};
+
+export const getItem = (key) => {
+  const value = window.localStorage.getItem(key);
+  return value === null ? "" : value;
+};
+
+export const setToken = (value) => {
+  setItem(USER_TOKEN, value);
+};
+
+export const clearToken = () => setToken("");
+
+export const getToken = () => getItem(USER_TOKEN);

@@ -28,3 +28,5 @@ export { default as goldStar } from "./goldStar.svg";
 export { default as emptyStar } from "./emptyStar.svg";
 export { default as emptyStarDarkMode } from "./emptyStarDarkMode.svg";
 export { default as darkClose } from "./darkClose.svg";
+export { default as viewIcon } from "./viewIcon.svg";
+export { default as viewOffIcon } from "./viewOffIcon.svg";
