@@ -4,6 +4,8 @@ import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import NavBarV2 from "./components/NavBarV2";
+import { Toaster } from "./components/ui/toaster";
+import Register from "./pages/Register";
 
 function App() {
   const Layout = () => (
@@ -35,6 +37,10 @@ function App() {
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
       },
     ],
     {

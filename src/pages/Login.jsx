@@ -1,14 +1,14 @@
 import { useState } from "react";
 import React from "react";
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { viewIcon, viewOffIcon } from "../assets/svg-icons";
 import { useMutation } from "react-query";
 import { api, setToken } from "../lib/axios";
+import { toast } from "../components/ui/use-toast";
 
 function Login() {
-  // const history = useHistory();
-
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
     username: "",
@@ -24,15 +24,29 @@ function Login() {
       onSuccess: (data) => {
         if (data.token) {
           setToken(data.token);
-          // Redirect after successful login
-          window.location.href = "/";
+          toast({
+            title: "Success",
+            description: "You have successfully logged in.",
+            variant: "success",
+          });
         }
+        navigate("/");
       },
       onError: (err) => {
-        console.error("Login error:", err);
+        toast({
+          title: "Error",
+          description: err.response.data.message,
+          variant: "destructive",
+        });
       },
     }
   );
+
+  const logInHandler = () => {
+    if (inputs.username && inputs.password) {
+      logIn();
+    }
+  };
 
   return (
     <>
@@ -91,7 +105,7 @@ function Login() {
             <button
               className="w-full bg-blue500 text-white p-2 rounded-lg mb-6 hover:bg-blue300 hover:border hover:broder-gray-300"
               disabled={isLoading}
-              onClick={() => logIn()}
+              onClick={() => logInHandler()}
             >
               Log in
             </button>
@@ -105,7 +119,10 @@ function Login() {
             </button>
             <div className="text-center text-gray-400">
               Don't have an account?
-              <span className="font-bold text-blue500 cursor-pointer hover-effect">
+              <span
+                className="font-bold text-blue500 cursor-pointer hover-effect"
+                onClick={() => navigate("/register")}
+              >
                 Register for free
               </span>
             </div>
