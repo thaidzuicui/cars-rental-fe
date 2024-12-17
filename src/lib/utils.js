@@ -44,3 +44,5 @@ export const setToken = (value) => {
 export const clearToken = () => setToken("");
 
 export const getToken = () => getItem(USER_TOKEN);
+
+export const checkToken = () => getToken() !== "";

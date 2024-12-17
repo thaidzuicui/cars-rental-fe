@@ -3,7 +3,7 @@ import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { lightModeIcon, darkModeIcon } from "../assets/svg-icons";
 import { FaSignOutAlt } from "react-icons/fa";
 import { clearLocalStorageItems } from "../lib/utils";
-import { getToken } from "../lib/utils";
+import { checkToken } from "../lib/utils";
 import useCurrentUser from "../queries/useCurrentUser";
 import { clearToken } from "../lib/utils";
 
@@ -14,8 +14,8 @@ import { clearToken } from "../lib/utils";
 //   username: "johndoe",
 // };
 const NavBarV2 = () => {
-  const [hasToken, setHasToken] = useState(getToken() ? true : false);
-  const { data, isLoading } = useCurrentUser({ enabled: hasToken });
+  const [hasToken, setHasToken] = useState(checkToken() ? true : false);
+  const { data, isLoading } = useCurrentUser(hasToken);
   const TABS = [
     { title: "Home", path: "/" },
     { title: "Search", path: "/search" },

@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { api } from "../lib/axios";
 
-const useCurrentUser = () =>
+const useCurrentUser = (enabled) =>
   useQuery(
     "currentUser",
     async () => {
@@ -10,6 +10,7 @@ const useCurrentUser = () =>
     },
     {
       staleTime: 300000,
+      enabled,
     }
   );
 
