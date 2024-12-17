@@ -42,12 +42,6 @@ function Login() {
     }
   );
 
-  const logInHandler = () => {
-    if (inputs.username && inputs.password) {
-      logIn();
-    }
-  };
-
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray100">
@@ -105,7 +99,7 @@ function Login() {
             <button
               className="w-full bg-blue500 text-white p-2 rounded-lg mb-6 hover:bg-blue300 hover:border hover:broder-gray-300"
               disabled={isLoading}
-              onClick={() => logInHandler()}
+              onClick={() => logIn()}
             >
               Log in
             </button>
@@ -118,18 +112,18 @@ function Login() {
               Log in with Google
             </button>
             <div className="text-center text-gray-400">
-              Don't have an account?
+              Don't have an account?{""}
               <span
                 className="font-bold text-blue500 cursor-pointer hover-effect"
                 onClick={() => navigate("/register")}
               >
-                Register for free
+                Sign up for free
               </span>
             </div>
           </div>
           <div className="relative">
             <img
-              src="https://i.pinimg.com/236x/1d/68/35/1d6835de0b6c326b4ea763fd98dee8bf.jpg"
+              src="https://i.pinimg.com/474x/0f/93/0c/0f930c3e323ca158bfe16ea87d4d88c2.jpg"
               alt="img"
               className="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
             />

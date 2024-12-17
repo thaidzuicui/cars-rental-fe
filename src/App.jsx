@@ -1,17 +1,42 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import NavBarV2 from "./components/NavBarV2";
-import { Toaster } from "./components/ui/toaster";
 import Register from "./pages/Register";
+import { getToken } from "./lib/utils";
+import { useEffect } from "react";
+import Footer from "./components/Footer";
+
+function PrivateRoute({ element }) {
+  const navigate = useNavigate();
+  const hasToken = getToken();
+
+  useEffect(() => {
+    if (!hasToken) {
+      navigate("/login");
+    }
+  }, [hasToken, navigate]); // Chạy lại khi `hasToken` thay đổi
+
+  if (!hasToken) {
+    return null; // Nếu không có token, không render element
+  }
+
+  return element; // Nếu có token, render element
+}
 
 function App() {
   const Layout = () => (
     <>
       <NavBarV2 />
       <Outlet />
+      <Footer />
     </>
   );
 
@@ -26,11 +51,11 @@ function App() {
           },
           {
             path: "/search",
-            element: <Search />,
+            element: <PrivateRoute element={<Search />} />,
           },
           {
             path: "/profile",
-            element: <Profile />,
+            element: <PrivateRoute element={<Profile />} />,
           },
         ],
       },
@@ -53,6 +78,7 @@ function App() {
       },
     }
   );
+
   return (
     <RouterProvider router={router} future={{ v7_startTransition: true }} />
   );
