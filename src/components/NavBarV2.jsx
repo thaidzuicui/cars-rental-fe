@@ -3,9 +3,9 @@ import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { lightModeIcon, darkModeIcon } from "../assets/svg-icons";
 import { FaSignOutAlt } from "react-icons/fa";
 import { clearLocalStorageItems } from "../lib/utils";
-import { checkToken } from "../lib/utils";
 import useCurrentUser from "../queries/useCurrentUser";
 import { clearToken } from "../lib/utils";
+import { useAuth } from "../context/AuthContext";
 
 // const user = {
 //   avatar:
@@ -14,7 +14,7 @@ import { clearToken } from "../lib/utils";
 //   username: "johndoe",
 // };
 const NavBarV2 = () => {
-  const [hasToken, setHasToken] = useState(checkToken() ? true : false);
+  const { hasToken, logout } = useAuth();
   const { data, isLoading } = useCurrentUser(hasToken);
   const TABS = [
     { title: "Home", path: "/" },
@@ -28,7 +28,7 @@ const NavBarV2 = () => {
   const handleSignOut = () => {
     clearToken();
     setIsDropdownOpen(false);
-    setHasToken(false);
+    logout();
   };
 
   const [isDarkMode, setIsDarkMode] = useState(

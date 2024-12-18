@@ -6,9 +6,11 @@ import { viewIcon, viewOffIcon } from "../assets/svg-icons";
 import { useMutation } from "react-query";
 import { api, setToken } from "../lib/axios";
 import { toast } from "../components/ui/use-toast";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [inputs, setInputs] = useState({
     username: "",
@@ -41,6 +43,11 @@ function Login() {
       },
     }
   );
+
+  const handleLogin = () => {
+    login();
+    logIn();
+  };
 
   return (
     <>
@@ -99,7 +106,7 @@ function Login() {
             <button
               className="w-full bg-blue500 text-white p-2 rounded-lg mb-6 hover:bg-blue300 hover:border hover:broder-gray-300"
               disabled={isLoading}
-              onClick={() => logIn()}
+              onClick={() => handleLogin()}
             >
               Log in
             </button>

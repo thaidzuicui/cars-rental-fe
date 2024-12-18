@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CarCardMainContent from "./CarCardMainContent";
 import { checkToken } from "../../lib/utils";
 import useCurrentUser from "../../queries/useCurrentUser";
 import { useMutation } from "react-query";
 import { api } from "../../lib/axios";
+import { useAuth } from "../../context/AuthContext";
 
 const carData = {
   carBrand: "Toyota",
@@ -29,9 +30,8 @@ const CarCard = ({
   availabilityTo,
   hasLiked,
 }) => {
-  const { hasToken } = checkToken();
-  const { data } = useCurrentUser(hasToken);
-  // console.log(data);
+  const { hasToken } = useAuth();
+
   const { mutate: toggleFavourite } = useMutation(async () => {
     const res = await api.post(`/api/likes/like/${carData.car_id}`);
     return res.data;
@@ -85,7 +85,7 @@ const CarCard = ({
           isPopularCar={isPopularCar}
           isFavourited={isFavourited}
           handleButtonClick={handleButtonClick}
-          userId={data?.user.user_id}
+          userId={hasToken}
         />
         <div className="mt-6 flex w-full justify-between">
           <p className="self-center font-medium">
