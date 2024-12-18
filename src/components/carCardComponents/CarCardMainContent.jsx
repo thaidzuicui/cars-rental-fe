@@ -21,7 +21,7 @@ const CarCardMainContent = ({
     <>
       <div className="flex w-full justify-between">
         <div className="flex flex-col">
-          <p className="font-medium xs:text-xl">
+          <p className="font-medium xs:text-xl dark:text-white">
             {carData?.brand} {carData?.model}
           </p>
           <p className="mt-1 text-xs font-semibold text-gray400 xs:text-sm">

@@ -88,8 +88,8 @@ const CarCard = ({
           userId={hasToken}
         />
         <div className="mt-6 flex w-full justify-between">
-          <p className="self-center font-medium">
-            {carData?.price1day}VNĐ/
+          <p className="self-center font-medium dark:text-white">
+            ${carData?.price1day}/
             <span className="text-xs text-gray400">day</span>
           </p>
           <button
