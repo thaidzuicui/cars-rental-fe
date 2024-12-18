@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import {
   redHeart,
   heart,
-  editSymbol,
-  editSymbolDarkMode,
   litres,
   transmission,
   peopleCapacity,
@@ -13,45 +11,41 @@ import { advertSilverCar } from "../../assets/pngs";
 
 const CarCardMainContent = ({
   carData,
-  canEdit,
   isPopularCar,
   isFavourited,
   motionKey,
   handleButtonClick,
+  userId,
 }) => {
   return (
     <>
       <div className="flex w-full justify-between">
         <div className="flex flex-col">
           <p className="font-medium xs:text-xl">
-            {carData.carBrand} {carData.carModel}
+            {carData?.brand} {carData?.model}
           </p>
           <p className="mt-1 text-xs font-semibold text-gray400 xs:text-sm">
-            {carData.carType}
+            {carData?.body_type}
           </p>
         </div>
         {/* Need to add canEdit here */}
-        {!canEdit ? (
-          <motion.div
-            key={motionKey}
-            className="flex"
-            animate={{ scale: isFavourited ? [1.6, 1] : [1, 1] }}
-            transition={{ duration: 0.7 }}
-          >
-            <img
-              width={16}
-              height={16}
-              src={isFavourited ? redHeart : heart}
-              alt="heart button"
-              className={`size-4 cursor-pointer self-start xs:size-6 ${
-                isFavourited && "heart_animation"
-              }`}
-              onClick={handleButtonClick}
-            />
-          </motion.div>
-        ) : (
-          <img width={16} height={16} />
-        )}
+        <motion.div
+          key={motionKey}
+          className={`${userId ? "flex" : "hidden"}`}
+          animate={{ scale: isFavourited ? [1.6, 1] : [1, 1] }}
+          transition={{ duration: 0.7 }}
+        >
+          <img
+            width={16}
+            height={16}
+            src={isFavourited ? redHeart : heart}
+            alt="heart button"
+            className={`size-4 cursor-pointer self-start xs:size-6 ${
+              isFavourited && "heart_animation"
+            }`}
+            onClick={handleButtonClick}
+          />
+        </motion.div>
       </div>
       <div
         className={`mt-3 flex justify-between ${
@@ -60,7 +54,7 @@ const CarCardMainContent = ({
       >
         <div className="flex w-full justify-center pr-4 sm:px-4 sm:pt-4">
           <img
-            src={carData?.carImages ? carData.carImages[0] : advertSilverCar}
+            src={carData?.car_imgs ? carData.car_imgs[0] : advertSilverCar}
             width={100}
             height={100}
             style={{
@@ -88,7 +82,7 @@ const CarCardMainContent = ({
               alt="engine literate"
             />
             <p className="ml-1 self-center text-xs text-gray400 xs:ml-1.5 xs:text-sm">
-              {carData?.fuelCapacity}L
+              {carData?.maximum_gasoline}L
             </p>
           </div>
           <div className="flex max-w-[9rem]">
@@ -100,7 +94,7 @@ const CarCardMainContent = ({
               className="size-3.5 xs:size-5"
             />
             <p className="ml-1 max-w-[5rem] self-center truncate text-xs capitalize text-gray400 xs:text-sm sm:ml-1.5">
-              {carData?.transmission}
+              {carData?.transmission_type}
             </p>
           </div>
           <div className="flex">

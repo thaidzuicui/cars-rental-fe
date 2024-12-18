@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CarCardMainContent from "./CarCardMainContent";
+import { checkToken } from "../../lib/utils";
+import useCurrentUser from "../../queries/useCurrentUser";
+import { useMutation } from "react-query";
+import { api } from "../../lib/axios";
 
 const carData = {
   carBrand: "Toyota",
@@ -17,15 +21,51 @@ const carData = {
   ],
 };
 
-const CarCard = ({ canEdit = false, isPopularCar = false }) => {
+const CarCard = ({
+  carData,
+  isPopularCar = false,
+  canReview = false,
+  availabilityFrom,
+  availabilityTo,
+  hasLiked,
+}) => {
+  const { hasToken } = checkToken();
+  const { data } = useCurrentUser(hasToken);
+  // console.log(data);
+  const { mutate: toggleFavourite } = useMutation(async () => {
+    const res = await api.post(`/api/likes/like/${carData.car_id}`);
+    return res.data;
+  });
   const [motionKey, setMotionKey] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [isFavourited, setIsFavourited] = useState(true);
+  const [isFavourited, setIsFavourited] = useState(hasLiked);
 
   const handleButtonClick = () => {
     setIsFavourited((prev) => !prev);
+    toggleFavourite();
     setMotionKey((prevKey) => prevKey + 1);
   };
+
+  const carAvailability = () => {
+    const bookings = carData?.bookings || [];
+
+    for (const booking of bookings) {
+      const rentalDate = new Date(booking.rental_date);
+      const returnDate = new Date(booking.return_date);
+
+      // Nếu khoảng thời gian bị trùng với bất kỳ booking nào
+      if (
+        (availabilityFrom >= rentalDate && availabilityFrom <= returnDate) || // Ngày bắt đầu nằm trong khoảng thuê
+        (availabilityTo >= rentalDate && availabilityTo <= returnDate) || // Ngày kết thúc nằm trong khoảng thuê
+        (availabilityFrom <= rentalDate && availabilityTo >= returnDate) // Khoảng thời gian bao trùm cả rental_date và return_date
+      ) {
+        return false; // Xe không khả dụng
+      }
+    }
+
+    return true; // Xe khả dụng
+  };
+
   return (
     <>
       <motion.div
@@ -42,20 +82,18 @@ const CarCard = ({ canEdit = false, isPopularCar = false }) => {
         <CarCardMainContent
           motionKey={motionKey}
           carData={carData}
-          canEdit={canEdit}
           isPopularCar={isPopularCar}
           isFavourited={isFavourited}
           handleButtonClick={handleButtonClick}
+          userId={data?.user.user_id}
         />
         <div className="mt-6 flex w-full justify-between">
           <p className="self-center font-medium">
-            {carData.rentPrice}VNĐ/
+            {carData?.price1day}VNĐ/
             <span className="text-xs text-gray400">day</span>
           </p>
           <button
-            className={`hover-effect rounded-[0.25rem] bg-blue500 px-5 py-2 text-sm font-medium text-white ${
-              canEdit && "hidden"
-            }`}
+            className="hover-effect rounded-[0.25rem] bg-blue500 px-5 py-2 text-sm font-medium text-white"
             onClick={() => setShowModal(true)}
           >
             More Info
