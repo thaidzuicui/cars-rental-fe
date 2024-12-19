@@ -1,7 +1,6 @@
 import React from "react";
 import AdvertsDisplay from "../components/adverts/AdvertsDisplay";
 import PickUpDropOffCard from "../components/PickUpDropOffCard";
-import CarCard from "../components/carCardComponents/CarCard";
 import usePopularCars from "../queries/usePopularCars";
 import { useAuth } from "../context/AuthContext";
 import useCurrentUser from "../queries/useCurrentUser";

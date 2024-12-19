@@ -24,9 +24,7 @@ const PopularCars = ({ popularCars, userId }) => {
           View All
         </p>
       </div>
-      <div className="no_scrollbar mt-4 flex w-full gap-5 overflow-x-auto xs:mt-0 xs:items-center xs:p-6 sm:grid sm:grid-cols-2 sm:flex-col sm:justify-center sm:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:px-[3.75rem]">
-        <div className="absolute right-0 h-[17.25rem] w-[4.5rem] bg-gradient-to-r from-transparent to-white/100 dark:to-gray900/100 xs:h-72 sm:hidden"></div>
-        <div className="flex w-5 xs:hidden" />
+      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-6 xl:px-[3.75rem]">
         {popularCars?.slice(0, 4).map((car) => (
           <CarCard
             carData={car}

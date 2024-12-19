@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import NavBarV2 from "./components/NavBarV2";
 import Register from "./pages/Register";
+import CheckOut from "./pages/CheckOut";
 import { getToken } from "./lib/utils";
 import { useEffect } from "react";
 import Footer from "./components/Footer";
@@ -56,6 +57,10 @@ function App() {
           {
             path: "/profile",
             element: <PrivateRoute element={<Profile />} />,
+          },
+          {
+            path: "/checkout",
+            element: <CheckOut />,
           },
         ],
       },

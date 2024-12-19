@@ -46,3 +46,20 @@ export const clearToken = () => setToken("");
 export const getToken = () => getItem(USER_TOKEN);
 
 export const checkToken = () => getToken() !== "";
+
+export function calculateDaysBetweenDates(dateStr1, dateStr2) {
+  const date1 = new Date(dateStr1);
+  const date2 = new Date(dateStr2);
+
+  // Calculate the time difference in milliseconds
+  const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+
+  // Convert milliseconds to days
+  const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+  return daysDiff + 1;
+}
+
+export function calculateOrderAmount(daysRented, rentPrice) {
+  return daysRented * rentPrice;
+}
