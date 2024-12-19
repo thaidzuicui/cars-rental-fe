@@ -37,7 +37,7 @@ const ModalCarDetails = ({
     <div className="mt-8 flex flex-col px-2 md:w-full lg:ml-10 lg:mt-0 lg:justify-between lg:p-6">
       <div className="flex flex-col">
         <div className="flex justify-between">
-          <p className="text-xl font-medium lg:text-3xl">
+          <p className="text-xl font-medium lg:text-3xl dark:text-white">
             {carData?.brand} {carData?.model}
           </p>
           <img
@@ -70,7 +70,7 @@ const ModalCarDetails = ({
           )}
         </div>
       </div>
-      <div className="mt-2 flex items-center gap-2 text-lg font-light lg:text-xl">
+      <div className="mt-2 flex items-center gap-2 text-lg font-light lg:text-xl dark:text-white">
         <MapPin />
         {carData.location}
       </div>
@@ -116,7 +116,7 @@ const ModalCarDetails = ({
         </div>
       </div>
       <div className="mt-8 flex w-full justify-between">
-        <p className="self-center font-medium sm:text-2xl">
+        <p className="self-center font-medium sm:text-2xl dark:text-white200">
           ${carData.price1day}/
           <span className="text-xs text-gray-400 sm:text-base"> day</span>
         </p>

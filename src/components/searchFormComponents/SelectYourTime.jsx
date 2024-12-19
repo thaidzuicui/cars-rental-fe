@@ -63,13 +63,13 @@ const SelectYourTime = ({ pickUpOrDropOff }) => {
   return (
     <Select defaultValue="10:00 AM">
       <div className="flex w-full flex-col gap-3.5">
-        <div className="flex flex-row items-center gap-[0.38rem]">
+        <div className="flex flex-row items-center gap-[0.38rem] dark:text-white200">
           <img src={clock} width={14} height={14} alt="Clock" />
           {pickUpOrDropOff}
         </div>
         <SelectTrigger
           id="timeSelect"
-          className="h-[2.875rem] border-0 bg-white200 text-sm font-normal dark:bg-gray800 sm:h-[3.5rem] xl:h-14 xl:pl-[1.13rem]"
+          className="h-[2.875rem] border-0 bg-white200 text-sm font-normal dark:bg-gray800 sm:h-[3.5rem] xl:h-14 xl:pl-[1.13rem] dark:text-white200"
         >
           <SelectValue placeholder="Select your time" />
         </SelectTrigger>

@@ -6,6 +6,7 @@ import { api } from "../../lib/axios";
 import { useAuth } from "../../context/AuthContext";
 import CarDetailsModalOne from "./CarDetailsModalOne";
 import { useLocation } from "react-router-dom";
+import { ca } from "date-fns/locale";
 
 const carData = {
   carBrand: "Toyota",
@@ -114,7 +115,7 @@ const CarCard = ({
             setShowModal={setShowModal}
             isPopular={isPopularCar}
             canReview={canReview}
-            carAvailability={carAvailability()}
+            carAvailability={false}
           />
         </div>
       )}

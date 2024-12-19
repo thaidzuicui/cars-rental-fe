@@ -74,7 +74,7 @@ export const StarRating = ({ rating, reviews }) => {
           //   style={{ objectFit: "cover" }} // Use inline styles
         />
       ))}
-      <p className="ml-2 self-center">
+      <p className="ml-2 self-center dark:text-white">
         {reviewCount}
         {reviews % 10 !== 0 && reviews > 9 && "+"}{" "}
         {reviews === 1 || reviews === 0 ? "Review" : "Reviews"}

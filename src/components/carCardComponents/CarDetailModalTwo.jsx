@@ -95,7 +95,7 @@ const CarDetailModalTwo = ({ carData, setShowModal }) => {
         <Popover>
           <div className={`flex w-full flex-col gap-3.5`}>
             <div className="flex flex-row">
-              <div className="flex flex-row items-center gap-[0.38rem]">
+              <div className="flex flex-row items-center gap-[0.38rem] dark:text-white200">
                 <img src={calendar} width={14} height={14} alt="calendar" />
                 Pick-Up Date
                 {errorMessage && (
@@ -110,7 +110,7 @@ const CarDetailModalTwo = ({ carData, setShowModal }) => {
               <Button
                 variant={"outline"}
                 className={cn(
-                  "bg-white200 dark:bg-gray800 h-[2.875rem] sm:h-[3.5rem] w-full justify-between border-0 text-left font-normal py-[0.69rem] px-[0.62rem] xl:pl-[1.13rem] xl:h-14",
+                  "bg-white200 dark:bg-gray800 h-[2.875rem] sm:h-[3.5rem] w-full justify-between border-0 text-left font-normal py-[0.69rem] px-[0.62rem] xl:pl-[1.13rem] xl:h-14 dark:text-white200",
                   !date && "text-muted-foreground",
                   errorMessage && "!border !border-red-600"
                 )}
@@ -119,7 +119,7 @@ const CarDetailModalTwo = ({ carData, setShowModal }) => {
                   format(date.from, "LLL dd, y")
                 ) : (
                   <>
-                    <span className="text-[0.625rem] font-normal leading-5 text-gray-400">
+                    <span className="text-[0.625rem] font-normal leading-5 text-gray-400 ">
                       Select your date
                     </span>
                     <ArrowDown />
@@ -145,7 +145,7 @@ const CarDetailModalTwo = ({ carData, setShowModal }) => {
         <Popover>
           <div className={`flex w-full flex-col gap-3.5`}>
             <div className="flex flex-row">
-              <div className="flex flex-row items-center gap-[0.38rem]">
+              <div className="flex flex-row items-center gap-[0.38rem] dark:text-white200">
                 <img src={calendar} width={14} height={14} alt="calendar" />
                 Drop-Off Date
                 {errorMessage && (
@@ -160,7 +160,7 @@ const CarDetailModalTwo = ({ carData, setShowModal }) => {
               <Button
                 variant={"outline"}
                 className={cn(
-                  "bg-white200 dark:bg-gray800 h-[2.875rem] sm:h-[3.5rem] w-full justify-between border-0 text-left font-normal py-[0.69rem] px-[0.62rem] xl:pl-[1.13rem] xl:h-14",
+                  "bg-white200 dark:bg-gray800 h-[2.875rem] sm:h-[3.5rem] w-full justify-between border-0 text-left font-normal py-[0.69rem] px-[0.62rem] xl:pl-[1.13rem] xl:h-14 dark:text-white200",
                   !date && "text-muted-foreground",
                   errorMessage && "!border !border-red-600"
                 )}

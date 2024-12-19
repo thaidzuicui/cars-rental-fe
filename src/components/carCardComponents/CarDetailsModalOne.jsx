@@ -62,8 +62,8 @@ const CarDetailsModalOne = ({
         }
         ${
           !showModalScreen2
-            ? "max-w-[30rem] lg:max-w-[65.9rem]"
-            : "h-auto max-w-[31.25rem]"
+            ? "max-w-[30rem] lg:max-w-[65.9rem] ml-[11.5rem] "
+            : "h-auto max-w-[31.25rem] ml-[30rem]"
         } 
         `}
       >
