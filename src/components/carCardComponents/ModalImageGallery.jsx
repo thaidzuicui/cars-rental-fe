@@ -29,7 +29,7 @@ const ModalImageGallery = ({ carData, displayPicture, setDisplayPicture }) => {
                 height={100}
                 alt="car picture"
                 className={`h-full w-auto cursor-pointer rounded-lg p-[3px] ${
-                  displayPicture === i && "border border-blue-600 p-[1px]"
+                  displayPicture === index && "border border-blue-600 p-[1px]"
                 }`}
                 onClick={() => setDisplayPicture(index)}
               />

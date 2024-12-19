@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CarCardMainContent from "./CarCardMainContent";
-import { checkToken } from "../../lib/utils";
-import useCurrentUser from "../../queries/useCurrentUser";
 import { useMutation } from "react-query";
 import { api } from "../../lib/axios";
 import { useAuth } from "../../context/AuthContext";
+import CarDetailsModalOne from "./CarDetailsModalOne";
+import { useLocation } from "react-router-dom";
 
 const carData = {
   carBrand: "Toyota",
@@ -31,6 +31,7 @@ const CarCard = ({
   hasLiked,
 }) => {
   const { hasToken } = useAuth();
+  const location = useLocation();
 
   const { mutate: toggleFavourite } = useMutation(async () => {
     const res = await api.post(`/api/likes/like/${carData.car_id}`);
@@ -100,6 +101,23 @@ const CarCard = ({
           </button>
         </div>
       </motion.div>
+      {showModal && (
+        <div
+          className={`absolute flex ${
+            location.pathname === "/search"
+              ? "h-screen w-screen lg:left-5 xl:left-0"
+              : "w-screen max-w-7xl"
+          } w-screen items-center justify-center xs:pr-14 xl:justify-self-center xl:pr-0`}
+        >
+          <CarDetailsModalOne
+            carData={carData}
+            setShowModal={setShowModal}
+            isPopular={isPopularCar}
+            canReview={canReview}
+            carAvailability={carAvailability()}
+          />
+        </div>
+      )}
     </>
   );
 };
