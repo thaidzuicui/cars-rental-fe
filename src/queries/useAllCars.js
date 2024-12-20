@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import { api } from "../lib/axios";
 
-const usePopularCars = () =>
+const useAllCars = () =>
   useQuery(
-    "popularCars",
+    "allCars",
     async () => {
-      const res = await api.get("/api/cars/popularCars");
+      const res = await api.get("/api/cars/allCars");
       return res.data;
     },
     {
@@ -13,4 +13,4 @@ const usePopularCars = () =>
     }
   );
 
-export default usePopularCars;
+export default useAllCars;

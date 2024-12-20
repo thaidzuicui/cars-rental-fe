@@ -6,3 +6,4 @@ export { default as loaderCityscape } from "./loaderCityscape.png";
 export { default as advertSilverCar } from "./advertSilverCar.svg";
 export { default as advertWhiteCar } from "./advertWhiteCar.svg";
 export { default as cityScapeCropped } from "./cityScapeCropped.png";
+export { default as defaultImg } from "./defaultImg.jpg";

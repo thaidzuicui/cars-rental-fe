@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import CarCardMainContent from "./CarCardMainContent";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { api } from "../../lib/axios";
 import { useAuth } from "../../context/AuthContext";
 import CarDetailsModalOne from "./CarDetailsModalOne";
 import { useLocation } from "react-router-dom";
-import { ca } from "date-fns/locale";
 
 const carData = {
   carBrand: "Toyota",
@@ -33,11 +32,19 @@ const CarCard = ({
 }) => {
   const { hasToken } = useAuth();
   const location = useLocation();
+  const queryClient = useQueryClient();
 
-  const { mutate: toggleFavourite } = useMutation(async () => {
-    const res = await api.post(`/api/likes/like/${carData.car_id}`);
-    return res.data;
-  });
+  const { mutate: toggleFavourite } = useMutation(
+    async () => {
+      const res = await api.post(`/api/likes/like/${carData.car_id}`);
+      return res.data;
+    },
+    {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries("likedCars");
+      },
+    }
+  );
   const [motionKey, setMotionKey] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [isFavourited, setIsFavourited] = useState(hasLiked);
@@ -115,7 +122,7 @@ const CarCard = ({
             setShowModal={setShowModal}
             isPopular={isPopularCar}
             canReview={canReview}
-            carAvailability={false}
+            carAvailability={carAvailability()}
           />
         </div>
       )}

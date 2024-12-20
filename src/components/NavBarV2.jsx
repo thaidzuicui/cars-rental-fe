@@ -29,6 +29,7 @@ const NavBarV2 = () => {
     clearToken();
     setIsDropdownOpen(false);
     logout();
+    navigate("/");
   };
 
   const [isDarkMode, setIsDarkMode] = useState(

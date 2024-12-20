@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import NavBarV2 from "./components/NavBarV2";
 import Register from "./pages/Register";
 import CheckOut from "./pages/CheckOut";
+import EditProfile from "./pages/EditProfile";
 import { getToken } from "./lib/utils";
 import { useEffect } from "react";
 import Footer from "./components/Footer";
@@ -56,7 +57,16 @@ function App() {
           },
           {
             path: "/profile",
-            element: <PrivateRoute element={<Profile />} />,
+            children: [
+              {
+                path: "",
+                element: <PrivateRoute element={<Profile />} />,
+              },
+              {
+                path: "edit",
+                element: <PrivateRoute element={<EditProfile />} />,
+              },
+            ],
           },
           {
             path: "/checkout",

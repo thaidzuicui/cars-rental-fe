@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { useLocation } from "react-router-dom";
 import "@geoapify/geocoder-autocomplete/styles/round-borders.css";
 import { addDays } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 import { Card, CardContent } from "./ui/card";
 import { ellipse, search } from "../assets/svg-icons";
@@ -12,6 +13,7 @@ import { parseLocalStorageDate } from "../lib/utils";
 import { Button } from "./ui/button";
 
 const PickUpDropOffCard = () => {
+  const navigate = useNavigate();
   const locate = useLocation();
   const [location, setLocation] = useState("");
   const [date, setDate] = useState();
@@ -45,7 +47,13 @@ const PickUpDropOffCard = () => {
     }
   };
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    navigate(
+      `/search?location=${location}&from=${date?.from ?? twoDaysFromNow}&to=${
+        date?.to ?? fiveDaysFromNow
+      }`
+    );
+  };
 
   const isSearchPage = locate.pathname === "/search";
   const searchPageDiv = isSearchPage ? "xl:px-7" : "xl:px-6";
