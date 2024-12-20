@@ -34,10 +34,10 @@ const Search = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <div className="flex grow flex-col bg-white200 px-20 pb-[3.75rem] pt-[7rem] dark:bg-gray950 sm:pb-0">
+      <div className="flex grow flex-col bg-white200 px-20 pb-[3.75rem] pt-[7rem]  dark:bg-gray950 sm:pb-0">
         <PickUpDropOffCard />
         <div
-          className="mt-[3.75rem] grid grid-rows-1 gap-5 xs:flex-col xs:items-center xs:justify-center sm:grid-cols-2 md:mt-9 
+          className="mt-[3.75rem] mb-[3.75rem] grid grid-rows-1 gap-5 xs:flex-col xs:items-center xs:justify-center sm:grid-cols-2 md:mt-9 
             md:gap-8 xl:grid-cols-3"
         >
           {availableCars?.map((car) => (
